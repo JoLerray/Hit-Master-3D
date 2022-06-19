@@ -6,7 +6,14 @@ public sealed class PlayerBehaviorService
     private Dictionary<Type, IBehavior> _behaviorsMap;
     private IBehavior _behaviorCurrent;
 
-    public PlayerBehaviorService() {
+    private Player _player;
+
+    public PlayerBehaviorService(Player player) 
+    {
+        if(player == null) throw new ArgumentNullException("Player not installed");
+
+        _player = player;
+
         InitBehaviours();
         SetBehaviorByDefault();
     }
@@ -14,8 +21,8 @@ public sealed class PlayerBehaviorService
     private void InitBehaviours() {
         _behaviorsMap = new Dictionary<Type, IBehavior>();
         
-        _behaviorsMap[typeof(PlayerBehaviorIdle)] = new PlayerBehaviorIdle();
-        _behaviorsMap[typeof(PlayerBehaviorRun)] = new PlayerBehaviorRun();
+        _behaviorsMap[typeof(PlayerBehaviorIdle)] = new PlayerBehaviorIdle(_player);
+        _behaviorsMap[typeof(PlayerBehaviorRun)] = new PlayerBehaviorRun(_player);
     }
 
     public void UpdateBehavior() {

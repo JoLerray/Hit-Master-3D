@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-   private PlayerBehaviorService _behaviorService;
+
+    [SerializeField] private Waypoint[] _weypoints;
+
+    private PlayerBehaviorService _behaviorService;
 
     private void OnEnable() {
         LevelServices.OnStart += InitBehaviorService;
@@ -15,8 +18,9 @@ public class Player : MonoBehaviour
     }
 
     private void InitBehaviorService() {
-        _behaviorService = new PlayerBehaviorService();
+        _behaviorService = new PlayerBehaviorService(this);
     }
+    
     private void Update() {
         if(_behaviorService != null)
             _behaviorService.UpdateBehavior();
