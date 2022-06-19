@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerInputListener : MonoBehaviour
@@ -8,7 +6,7 @@ public class PlayerInputListener : MonoBehaviour
   public static event PlayerTouchHandler OnTouch;  
   
   private void Update() {
-    
+
     GetTouchInput();
   }
 
