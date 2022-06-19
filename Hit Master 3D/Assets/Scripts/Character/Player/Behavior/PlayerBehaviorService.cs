@@ -18,8 +18,7 @@ public sealed class PlayerBehaviorService
         _behaviorsMap[typeof(PlayerBehaviorRun)] = new PlayerBehaviorRun();
     }
 
-    private void Update()
-    {
+    public void UpdateBehavior() {
         if(_behaviorCurrent != null) _behaviorCurrent.Update();
     }
 

@@ -16,6 +16,7 @@ public class PlayerInputListener : MonoBehaviour
     {
         Touch touch = Input.GetTouch(0);
         OnTouch.Invoke(touch);
+        Debug.Log(touch.position);
     }
   }
 }
