@@ -18,14 +18,16 @@ public sealed class PlayerBehaviorService
         SetBehaviorByDefault();
     }
 
-    private void InitBehaviours() {
+    private void InitBehaviours() 
+    {
         _behaviorsMap = new Dictionary<Type, IBehavior>();
         
         _behaviorsMap[typeof(PlayerBehaviorIdle)] = new PlayerBehaviorIdle(_player);
         _behaviorsMap[typeof(PlayerBehaviorRun)] = new PlayerBehaviorRun(_player);
     }
 
-    public void UpdateBehavior() {
+    public void UpdateBehavior() 
+    {
         if(_behaviorCurrent != null) _behaviorCurrent.Update();
     }
 

@@ -5,20 +5,22 @@ using System.Collections.Generic;
 
 public class Platform : MonoBehaviour
 {
-    private List<Enemy> _enemies = new List<Enemy>();
-    
     public delegate void EnemyListHandler ();
     public static event EnemyListHandler OnEmpty; 
 
-    MeshCollider _collider;    
+    private List<Enemy> _enemies = new List<Enemy>();
+    
+    private MeshCollider _collider;    
 
     public int EnemiesCount => _enemies.Count;
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         Enemy.OnDeath += RemoveEnemyFromList;
     }
 
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         Enemy.OnDeath -= RemoveEnemyFromList;
     }
 
@@ -29,26 +31,25 @@ public class Platform : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-
         Enemy enemy;
 
         if((enemy = other.collider.GetComponent<Enemy>()) != null) 
-        {
             AddEnemyInList(enemy);
-        }
+        
     }
 
     private void AddEnemyInList(Enemy enemy) 
     {
-        Debug.Log("Enemy add to list");
-            _enemies.Add(enemy);
+        _enemies.Add(enemy);
     }
 
     private void RemoveEnemyFromList(Enemy enemy) 
     {
-            if(_enemies.Contains(enemy)) {
-            _enemies.Remove(enemy);
-            if(_enemies.Count <= 0) OnEmpty.Invoke();
-        }
+        if(_enemies.Contains(enemy) == false) return;
+
+        _enemies.Remove(enemy);
+
+        if(_enemies.Count <= 0) 
+            OnEmpty.Invoke();
     }
 }

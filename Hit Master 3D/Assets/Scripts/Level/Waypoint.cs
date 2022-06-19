@@ -17,33 +17,33 @@ public class Waypoint : MonoBehaviour
     
     private SphereCollider _collider;
     
+    private bool _isPlayerTake = false;
+    
     public Platform Platform => _platform;
 
     public Waypoint NextWaypoint => _nextWaypoint;
 
-    private bool _flagTrigger = false;
+    public bool IsPlayerTake => _isPlayerTake;
 
-    public bool FlagTrigger => _flagTrigger;
-
-    private void Start() {
-        
+    private void Start() 
+    {
         _collider = GetComponent<SphereCollider>();
         _collider.radius = _radius;   
         if(_collider.isTrigger != true) throw new ArgumentException("Waypoint collider is not trigger");
     }
 
     
-    private void OnTriggerEnter(Collider other) {
-
+    private void OnTriggerEnter(Collider other) 
+    {
         if((other.GetComponent<Player>()) != null ) 
         {
-           
             OnTriger.Invoke(this);
-            _flagTrigger = true;
+            _isPlayerTake = true;
         }
     }
 
-    private void OnDrawGizmosSelected() {
+    private void OnDrawGizmosSelected() 
+    {
         Gizmos.DrawWireSphere(transform.position,_radius);
     }
 }

@@ -13,13 +13,15 @@ public class Enemy : MonoBehaviour
         StartCoroutine(Death());
     }
 
-    public void Die() {
+    public void Die() 
+    {
 
         OnDeath.Invoke(this);
         Destroy(gameObject);
     }
 
-    IEnumerator Death() {
+    IEnumerator Death() 
+    {
         yield return new WaitForSeconds(15f);
         Die();    
     }

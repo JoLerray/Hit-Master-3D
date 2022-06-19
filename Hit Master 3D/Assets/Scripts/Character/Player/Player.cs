@@ -1,45 +1,55 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField] private CapsuleCollider _collider;
-    
     [SerializeField] private Waypoint[] _waypoints;
+
+    [SerializeField] private GameObject _movement;
+
+    [SerializeField] private GameObject _shooting;
 
     private PlayerBehaviorService _behaviorService;
 
-    private NavMeshAgent _navMeshAgent;
+    private IMovable _movable;
 
-    public NavMeshAgent NavMeshAgent => _navMeshAgent;
+    private IShootable _shootable;
 
     public Waypoint[] Waypoints => _waypoints;
+    
+    public IMovable Movable => _movable;
 
-    private void OnEnable() {
+    public IShootable Shootable => _shootable;
+
+    private void OnEnable() 
+    {
         LevelServices.OnStart += InitBehaviorService;
         Waypoint.OnTriger += SetBehavoir;
-        
     } 
 
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         LevelServices.OnStart -= InitBehaviorService;
         Waypoint.OnTriger -= SetBehavoir;
-       
+    }
+    
+    private void Start() 
+    {
+        if((_movable =_movement.GetComponent<IMovable>()) == null) 
+            throw new ArgumentNullException("Movement don't have IMovable interface");
+
+        if((_shootable = _shooting.GetComponent<IShootable>()) == null) 
+            throw new ArgumentNullException("Shooting don't have IShootable interface");
     }
 
-    private void Start() {
-        
-        _navMeshAgent = GetComponent<NavMeshAgent>();
-    }
-
-    private void Update() {
+    private void Update() 
+    {
         if(_behaviorService != null)
             _behaviorService.UpdateBehavior();
     }
 
-    private void InitBehaviorService() {
+    private void InitBehaviorService() 
+    {
         _behaviorService = new PlayerBehaviorService(this);
         Platform.OnEmpty += _behaviorService.SetBehaviorRun;
     }
@@ -51,8 +61,9 @@ public class Player : MonoBehaviour
             
         else _behaviorService.SetBehaviorIdle();
     }
-    
-    private void OnDestroy() {
+
+    private void OnDestroy() 
+    {
         Platform.OnEmpty -= _behaviorService.SetBehaviorRun;
     }
     

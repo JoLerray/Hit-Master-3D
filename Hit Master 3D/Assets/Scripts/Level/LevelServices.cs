@@ -1,25 +1,30 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class LevelServices : MonoBehaviour
 {
-    
+    [SerializeField] private float _delayRestartLevel;
+
     private bool _isStart = false;
 
     public delegate void LevelStartHandler ();
     public static event LevelStartHandler OnStart; 
 
-    private void OnEnable() {
+    private void OnEnable() 
+    {
         PlayerInputListener.OnTouch += StartLevel;
         Waypoint.OnTriger += ReloadLevel;
     }
     
-    private void OnDisable() {
+    private void OnDisable() 
+    {
         PlayerInputListener.OnTouch -= StartLevel;
         Waypoint.OnTriger -= ReloadLevel;
     }
     
-    private void StartLevel(Touch touch) {
+    private void StartLevel(Touch touch) 
+    {
         
         if(_isStart == true) return;
         StartLevel();
@@ -34,11 +39,12 @@ public class LevelServices : MonoBehaviour
     private void ReloadLevel(Waypoint waypoint) 
     {
         if(waypoint.NextWaypoint == null) 
-            ReloadLevel();
+            StartCoroutine(ReloadLevel());
     }
 
-    private void ReloadLevel() {
+    private IEnumerator ReloadLevel() 
+    {
+        yield return new WaitForSeconds(_delayRestartLevel);
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
-
 }

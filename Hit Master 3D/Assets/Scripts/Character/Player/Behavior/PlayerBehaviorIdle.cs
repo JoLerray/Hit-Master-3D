@@ -6,9 +6,9 @@ public sealed class PlayerBehaviorIdle : PlayerBehavior {
 
     public PlayerBehaviorIdle(Player player) : base(player) {}
 
-    public override void Enter() {Debug.Log("Enter Idle");}
+    public override void Enter() {}
 
-    public override void Update() {Debug.Log("In Idle");}
+    public override void Update() {}
 
-    public override void Exit() {Debug.Log("Exit in Idle"); }
+    public override void Exit() {}
 }
