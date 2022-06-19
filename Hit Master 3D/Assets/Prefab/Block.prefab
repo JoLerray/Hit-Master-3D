@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6909852326080391290}
   - component: {fileID: 6909852326080391291}
   - component: {fileID: 6909852326080391288}
+  - component: {fileID: 3099690536520028456}
   m_Layer: 0
   m_Name: SM_PolygonPrototype_Primitive_Cylander_01P (1)
   m_TagString: Untagged
@@ -96,6 +97,19 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: 5cbb72520f7443f49b700d24eeec82e9, type: 3}
+--- !u!114 &3099690536520028456
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6909852326080391289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2224bd275be3197469d6be39087c5b93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _enemies: []
 --- !u!1 &6909852326557163261
 GameObject:
   m_ObjectHideFlags: 0

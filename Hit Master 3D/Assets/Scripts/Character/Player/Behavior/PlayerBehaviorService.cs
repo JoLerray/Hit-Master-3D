@@ -29,7 +29,8 @@ public sealed class PlayerBehaviorService
         if(_behaviorCurrent != null) _behaviorCurrent.Update();
     }
 
-    private void SetBehavior(IBehavior newBehavior) {
+    private void SetBehavior(IBehavior newBehavior) 
+    {
         if(_behaviorCurrent != null)
             _behaviorCurrent.Exit();
         
@@ -43,7 +44,7 @@ public sealed class PlayerBehaviorService
     }
 
     private void SetBehaviorByDefault() {
-        var behaviorByDefaul = this.GetBehavior<PlayerBehaviorIdle>();
+        var behaviorByDefaul = this.GetBehavior<PlayerBehaviorRun>();
         this.SetBehavior(behaviorByDefaul);
     }
 
