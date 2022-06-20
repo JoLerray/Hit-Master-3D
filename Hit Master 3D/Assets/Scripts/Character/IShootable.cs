@@ -1,5 +1,6 @@
+using UnityEngine;
 
 public interface IShootable
 {
-    public void Shoot();
+    public void Shoot(Transform target,Vector3 targetPoint);
 }

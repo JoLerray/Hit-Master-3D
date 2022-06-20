@@ -6,7 +6,11 @@ public sealed class PlayerBehaviorRun : PlayerBehavior
 {
     public PlayerBehaviorRun(Player player) : base(player) {}
 
-    public override void Enter() {}
+    public override void Enter()
+    {
+
+        Player.Animator.SetBool("isRun",true);
+    }
 
     public override void Update() 
     {

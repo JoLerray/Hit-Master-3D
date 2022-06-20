@@ -11,6 +11,8 @@ public class Player : MonoBehaviour
 
     private PlayerBehaviorService _behaviorService;
 
+    private Animator _animator;
+
     private IMovable _movable;
 
     private IShootable _shootable;
@@ -20,6 +22,8 @@ public class Player : MonoBehaviour
     public IMovable Movable => _movable;
 
     public IShootable Shootable => _shootable;
+
+    public Animator Animator => _animator;
 
     private void OnEnable() 
     {
@@ -40,6 +44,8 @@ public class Player : MonoBehaviour
 
         if((_shootable = _shooting.GetComponent<IShootable>()) == null) 
             throw new ArgumentNullException("Shooting don't have IShootable interface");
+
+        _animator = GetComponent<Animator>();
     }
 
     private void Update() 
@@ -50,6 +56,7 @@ public class Player : MonoBehaviour
 
     private void InitBehaviorService() 
     {
+        _behaviorService = null;
         _behaviorService = new PlayerBehaviorService(this);
         Platform.OnEmpty += _behaviorService.SetBehaviorRun;
     }
@@ -59,12 +66,19 @@ public class Player : MonoBehaviour
         if (waypoint.NextWaypoint != null && waypoint.NextWaypoint.Platform.EnemiesCount <= 0) 
             _behaviorService.SetBehaviorRun();
             
-        else _behaviorService.SetBehaviorIdle();
+        else 
+            _behaviorService.SetBehaviorIdle();
+    }
+
+    private void Rotate(Waypoint waypoint) 
+    {
+        transform.transform.rotation = waypoint.transform.rotation;
     }
 
     private void OnDestroy() 
     {
         Platform.OnEmpty -= _behaviorService.SetBehaviorRun;
+        _behaviorService.SetBehaviorRun();
+        _behaviorService = null;
     }
-    
 }

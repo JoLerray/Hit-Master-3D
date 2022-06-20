@@ -11,6 +11,17 @@ public class LevelServices : MonoBehaviour
     public delegate void LevelStartHandler ();
     public static event LevelStartHandler OnStart; 
 
+    private static LevelServices instance;
+
+    private void Awake() 
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        DontDestroyOnLoad(this);
+    }
+
     private void OnEnable() 
     {
         PlayerInputListener.OnTouch += StartLevel;
@@ -45,6 +56,8 @@ public class LevelServices : MonoBehaviour
     private IEnumerator ReloadLevel() 
     {
         yield return new WaitForSeconds(_delayRestartLevel);
+        _isStart = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
+  
 }

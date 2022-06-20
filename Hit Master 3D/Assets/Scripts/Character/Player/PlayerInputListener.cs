@@ -15,7 +15,10 @@ public class PlayerInputListener : MonoBehaviour
     if(Input.touchCount > 0) 
     {
         Touch touch = Input.GetTouch(0);
-        OnTouch.Invoke(touch);
+
+        if(touch.phase == TouchPhase.Ended) 
+          OnTouch.Invoke(touch);
+
         Debug.Log(touch.position);
     }
   }

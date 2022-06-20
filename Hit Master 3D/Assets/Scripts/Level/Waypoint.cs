@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class Waypoint : MonoBehaviour
 {
-
     public delegate void PlayerWaypointTrigerHandler (Waypoint waypoint);
     public static event PlayerWaypointTrigerHandler OnTriger; 
     
