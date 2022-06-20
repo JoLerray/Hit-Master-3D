@@ -8177,7 +8177,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2109250582, guid: 0985724d36005964d8aae1e8dc047bab, type: 3}
       propertyPath: _speedBullet
-      value: 6
+      value: 400
+      objectReference: {fileID: 0}
+    - target: {fileID: 2109250582, guid: 0985724d36005964d8aae1e8dc047bab, type: 3}
+      propertyPath: _timeBulletLive
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 1465606357546995757, guid: 0985724d36005964d8aae1e8dc047bab,
         type: 3}
