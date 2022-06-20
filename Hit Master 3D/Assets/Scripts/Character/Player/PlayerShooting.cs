@@ -36,8 +36,8 @@ public class PlayerShooting : MonoBehaviour, IShootable
         if(bullet == null) return;
 
         bullet.transform.position = targetPoint + Vector3.one;
-
-        bullet.Rigidbody.AddForce(_speedBullet * target.transform.forward,ForceMode.Impulse);
+        bullet.Rigidbody.velocity = Vector3.zero;
+        bullet.Rigidbody.AddForce(_speedBullet * target.transform.forward * Time.deltaTime, ForceMode.Impulse);
         
         StartCoroutine(OffBullet(bullet));
 

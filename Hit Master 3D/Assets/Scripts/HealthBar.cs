@@ -13,6 +13,8 @@ public class HealthBar : MonoBehaviour
     
     [SerializeField] private bool _isActiveInStart = false;
 
+    [SerializeField] private Gradient _gradient;
+
     private IHealth _health;
 
     private void Awake() 
@@ -36,8 +38,11 @@ public class HealthBar : MonoBehaviour
 
         ShowBar();
         
-        _healthBarFilling.fillAmount = newHeatPoints / healthPointsMax;
+        var valueAsPercantage = newHeatPoints / healthPointsMax;
 
+        _healthBarFilling.fillAmount  = valueAsPercantage;
+        _healthBarFilling.color = _gradient.Evaluate(valueAsPercantage);
+        
         StartCoroutine(HideBar());
     }
 
