@@ -1,11 +1,9 @@
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDeath
 {
     public delegate void EnemyDeathHandler (Enemy enemy);
     public static event EnemyDeathHandler OnDeath; 
-
-    [SerializeField] private float _health;
 
     public void Die() 
     {

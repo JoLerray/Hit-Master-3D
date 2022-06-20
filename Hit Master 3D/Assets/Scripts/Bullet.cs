@@ -19,11 +19,11 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter(Collision other) 
     {
-        Enemy enemy;
-
-        if((enemy = other.collider.GetComponent<Enemy>()) != null)
-            enemy.Die();
-
+        IHealth healthTarget;
+        
+        if((healthTarget = other.collider.transform.GetComponent<IHealth>()) != null)
+            healthTarget.TakeDamage(_damage);
+            
         gameObject.SetActive(false);
     }
 }
