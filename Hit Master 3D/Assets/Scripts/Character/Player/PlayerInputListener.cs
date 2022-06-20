@@ -18,6 +18,8 @@ public class PlayerInputListener : MonoBehaviour
 
         if(touch.phase == TouchPhase.Ended) 
           OnTouch.Invoke(touch);
+
+        Debug.Log(touch.position);
     }
   }
 }

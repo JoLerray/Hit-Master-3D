@@ -1,7 +1,10 @@
+
 using UnityEngine;
 
 [RequireComponent(typeof(SphereCollider))]
 [RequireComponent(typeof(Rigidbody))]
+//public delegate void LevelStartHandler ();
+//public static event LevelStartHandler OnStart; 
 
 public class Bullet : MonoBehaviour
 {
