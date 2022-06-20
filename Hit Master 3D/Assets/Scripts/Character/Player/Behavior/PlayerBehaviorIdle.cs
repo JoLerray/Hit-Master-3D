@@ -12,7 +12,7 @@ public sealed class PlayerBehaviorIdle : PlayerBehavior {
         Player.Animator.SetBool("isRun",false);
     }
 
-    public override void Update() {Debug.Log("I can shoot");}
+    public override void Update() {}
 
     public override void Exit() 
     {
