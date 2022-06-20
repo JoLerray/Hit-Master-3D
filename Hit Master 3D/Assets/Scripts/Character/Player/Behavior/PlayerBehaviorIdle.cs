@@ -24,7 +24,7 @@ public sealed class PlayerBehaviorIdle : PlayerBehavior {
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit hit;
         
-        if (Physics.Raycast(ray,out hit, 100))
+        if (Physics.Raycast(ray,out hit, 15))
             Player.Shootable.Shoot(hit.transform,hit.point);
     }
 }
