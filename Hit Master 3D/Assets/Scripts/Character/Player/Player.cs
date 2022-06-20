@@ -1,6 +1,8 @@
 using System;
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class Player : MonoBehaviour
 {
     [SerializeField] private Waypoint[] _waypoints;
@@ -68,11 +70,6 @@ public class Player : MonoBehaviour
             
         else 
             _behaviorService.SetBehaviorIdle();
-    }
-
-    private void Rotate(Waypoint waypoint) 
-    {
-        transform.transform.rotation = waypoint.transform.rotation;
     }
 
     private void OnDestroy() 

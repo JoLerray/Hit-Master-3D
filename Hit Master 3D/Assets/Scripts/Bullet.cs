@@ -7,6 +7,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     private Rigidbody _rigidbody;
+
+    [SerializeField] private float _damage = 1;
     
     public Rigidbody Rigidbody => _rigidbody;
 
