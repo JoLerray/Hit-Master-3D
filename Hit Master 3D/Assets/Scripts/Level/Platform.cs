@@ -38,6 +38,17 @@ public class Platform : MonoBehaviour
         
     }
 
+    private void OnCollisionExit(Collision other) 
+    {
+        Enemy enemy;
+
+        if((enemy = other.collider.GetComponent<Enemy>()) != null)
+        {
+            RemoveEnemyFromList(enemy);
+            enemy.Die();
+        }
+    }
+
     private void AddEnemyInList(Enemy enemy) 
     {
         _enemies.Add(enemy);

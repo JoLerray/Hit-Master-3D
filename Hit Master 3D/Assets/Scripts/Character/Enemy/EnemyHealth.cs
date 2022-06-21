@@ -8,6 +8,7 @@ public class EnemyHealth : Health
     public override void TakeDamage(float damage)
     {
         var oldHeatPoints = HealthPoints;
+        
         base.TakeDamage(damage);
 
         OnTakeDamage.Invoke(this.transform, damage, HealthPointsMax, oldHeatPoints, HealthPoints);
@@ -16,7 +17,6 @@ public class EnemyHealth : Health
         {
             this.GetComponent<IDeath>().Die();   
         }
-        
     }
 
 }
