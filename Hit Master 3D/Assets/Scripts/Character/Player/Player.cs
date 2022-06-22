@@ -75,7 +75,7 @@ public class Player : MonoBehaviour
     private void OnDestroy() 
     {
         Platform.OnEmpty -= _behaviorService.SetBehaviorRun;
-        _behaviorService.SetBehaviorRun();
+        _behaviorService.SetBehaviorEmpty();
         _behaviorService = null;
     }
 }

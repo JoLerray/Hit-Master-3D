@@ -24,6 +24,7 @@ public sealed class PlayerBehaviorService
         
         _behaviorsMap[typeof(PlayerBehaviorIdle)] = new PlayerBehaviorIdle(_player);
         _behaviorsMap[typeof(PlayerBehaviorRun)] = new PlayerBehaviorRun(_player);
+        _behaviorsMap[typeof(BehaviorEmpty)] = new BehaviorEmpty();
     }
 
     public void UpdateBehavior() 
@@ -40,23 +41,33 @@ public sealed class PlayerBehaviorService
         _behaviorCurrent.Enter();
     }
 
-    private IBehavior GetBehavior<T>() where T: IBehavior {
+    private IBehavior GetBehavior<T>() where T: IBehavior 
+    {
         var type = typeof(T);
         return _behaviorsMap[type];
     }
 
-    private void SetBehaviorByDefault() {
+    private void SetBehaviorByDefault() 
+    {
         var behaviorByDefaul = this.GetBehavior<PlayerBehaviorRun>();
         this.SetBehavior(behaviorByDefaul);
     }
 
-    public void SetBehaviorIdle() {
+    public void SetBehaviorIdle() 
+    {
         var behavior = GetBehavior<PlayerBehaviorIdle>();
         SetBehavior(behavior);
     }
 
-    public void SetBehaviorRun() {
+    public void SetBehaviorRun() 
+    {
         var behavior = GetBehavior<PlayerBehaviorRun>();
+        SetBehavior(behavior);
+    }
+
+    public void SetBehaviorEmpty() 
+    {
+        var behavior = GetBehavior<BehaviorEmpty>();
         SetBehavior(behavior);
     }
 }

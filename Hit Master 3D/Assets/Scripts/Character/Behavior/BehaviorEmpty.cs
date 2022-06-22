@@ -1,5 +1,5 @@
 
-public class BehaviorIdle : IBehavior
+public  class BehaviorEmpty : IBehavior
 {
     public virtual void Enter() {}
 

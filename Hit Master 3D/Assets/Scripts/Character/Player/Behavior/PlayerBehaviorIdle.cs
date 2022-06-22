@@ -1,4 +1,3 @@
-
 using UnityEngine;
 
 public sealed class PlayerBehaviorIdle : PlayerBehavior {
@@ -24,7 +23,7 @@ public sealed class PlayerBehaviorIdle : PlayerBehavior {
         Ray ray = Camera.main.ScreenPointToRay(touch.position);
         RaycastHit hit;
         
-        if (Physics.Raycast(ray,out hit, 15))
+        if (Physics.Raycast(ray,out hit, 50))
             Player.Shootable.Shoot(hit.transform,hit.point);
     }
 }
