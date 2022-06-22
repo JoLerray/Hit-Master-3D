@@ -39,6 +39,10 @@ public class Player : MonoBehaviour
         Waypoint.OnTriger -= SetBehavoir;
     }
     
+    private void Awake() {
+        _animator = GetComponent<Animator>();
+    }
+
     private void Start() 
     {
         if((_movable =_movement.GetComponent<IMovable>()) == null) 
@@ -46,8 +50,6 @@ public class Player : MonoBehaviour
 
         if((_shootable = _shooting.GetComponent<IShootable>()) == null) 
             throw new ArgumentNullException("Shooting don't have IShootable interface");
-
-        _animator = GetComponent<Animator>();
     }
 
     private void Update() 

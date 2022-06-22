@@ -27,7 +27,7 @@ public class HealthBar : MonoBehaviour
         _healthBarBackground.gameObject.SetActive(_isActiveInStart);
     }
 
-    private void OnDestroy() 
+    private void OnDisable() 
     {
         EnemyHealth.OnTakeDamage -= OnHealthChanged;
     }

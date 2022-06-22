@@ -40,7 +40,6 @@ public class PlayerShooting : MonoBehaviour, IShootable
         bullet.Rigidbody.AddForce(_speedBullet * target.transform.forward * Time.deltaTime, ForceMode.Impulse);
         
         StartCoroutine(OffBullet(bullet));
-
     }
 
     private void OnDestroy()
