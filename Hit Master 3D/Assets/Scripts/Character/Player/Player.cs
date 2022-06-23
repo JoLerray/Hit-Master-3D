@@ -37,9 +37,12 @@ public class Player : MonoBehaviour
     {
         LevelServices.OnStart -= InitBehaviorService;
         Waypoint.OnTriger -= SetBehavoir;
+        if(_behaviorService != null)
+            _behaviorService.SetBehaviorEmpty();
     }
     
     private void Awake() {
+    
         _animator = GetComponent<Animator>();
     }
 
@@ -60,7 +63,7 @@ public class Player : MonoBehaviour
 
     private void InitBehaviorService() 
     {
-        _behaviorService = null;
+ 
         _behaviorService = new PlayerBehaviorService(this);
         Platform.OnEmpty += _behaviorService.SetBehaviorRun;
     }
@@ -74,10 +77,9 @@ public class Player : MonoBehaviour
             _behaviorService.SetBehaviorIdle();
     }
 
-    private void OnDestroy() 
+    public void SetEmptyBehavor()
     {
-        Platform.OnEmpty -= _behaviorService.SetBehaviorRun;
-        _behaviorService.SetBehaviorEmpty();
-        _behaviorService = null;
+        if(_behaviorService != null)
+            _behaviorService.SetBehaviorEmpty();
     }
 }

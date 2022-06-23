@@ -8,7 +8,14 @@ public sealed class PlayerBehaviorRun : PlayerBehavior
 
     public override void Enter()
     {
-        Player.Animator.SetBool("isRun",true);
+        try
+        {
+            Player.Animator.SetBool("isRun",true);
+        }
+        catch 
+        {
+            Player.SetEmptyBehavor();
+        }
     }
 
     public override void Update() 

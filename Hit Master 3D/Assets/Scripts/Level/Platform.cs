@@ -56,6 +56,7 @@ public class Platform : MonoBehaviour
 
     private void RemoveEnemyFromList(Enemy enemy) 
     {
+    
         if(_enemies.Contains(enemy) == false) return;
 
         _enemies.Remove(enemy);
