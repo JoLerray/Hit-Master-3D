@@ -7,7 +7,7 @@ public class PlayerShooting : MonoBehaviour, IShootable
 
     [SerializeField] private int _poolCount = 5;
     
-    [SerializeField] private bool _autoExpand = false;
+    [SerializeField] private bool _autoExpand = true;
 
     [SerializeField] private Bullet _bulletPrefab;
 
@@ -35,9 +35,10 @@ public class PlayerShooting : MonoBehaviour, IShootable
         
         if(bullet == null) return;
 
-        bullet.transform.position = targetPoint + Vector3.one;
+        bullet.transform.position = _spawnBulletPoint.position;
         bullet.Rigidbody.velocity = Vector3.zero;
-        bullet.Rigidbody.AddForce(_speedBullet * target.transform.forward * Time.deltaTime, ForceMode.Impulse);
+        bullet.Rigidbody.AddForce((targetPoint - bullet.transform.position).normalized * _speedBullet * Time.deltaTime, ForceMode.Impulse);
+      
         
         StartCoroutine(OffBullet(bullet));
     }
